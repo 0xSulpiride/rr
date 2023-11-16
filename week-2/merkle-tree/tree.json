@@ -1,0 +1,82 @@
+{
+  "format": "standard-v1",
+  "tree": [
+    "0x048c6e7746f948a03fd1686e8194e2f62d096380ba12b113b55a734ed9228095",
+    "0x2df98e9a27d668ffa94cc813490897b2dfc6bef9d9f81c901ffa8a152c90b57b",
+    "0xe3a7e3a8cb1580e699b2aeea7feece39e5275d134a6501003672dab6f9e77d7c",
+    "0x910f60f554733daf2d69eb44169f2c5cd95dc6bd7f2f3ea19c91295879e30a45",
+    "0x1fdf5401990e2cac67ac4a5f20ffb1f408ec0fb41734d0679ef9196ee9aaf536",
+    "0x90790a3d72ce8874f0f810c1d8fc8fe47353466b1ccadab9afe5fd08872cbffa",
+    "0x8138140fea4d27ef447a72f4fcbc1ebb518cca612ea0d392b695ead7f8c99ae6",
+    "0xe10e1f7fdb0fc794cb1210eef684e1be1081e9fb24ac530b4e0e3bef8b7205d3",
+    "0xb500d2c97443c9f2905ec5f22ffd4089290fcff30dd7cfd413311ea0f274a1ab",
+    "0xae03c54e592bf495debe55e14caeea22be1bc84b6c0ce6c75a71de2d2b5ff346",
+    "0xa7f95bf9b860c01d4d702abd2b530a36520fe6fef8b5598d7c9580b61fbd5b75",
+    "0x5fa3dab1e0e1070445c119c6fd10edd16d6aa2f25a5899217f919c041d474318",
+    "0x50bca9edd621e0f97582fa25f616d475cabe2fd783c8117900e5fed83ec22a7c",
+    "0x2fc7941cecc943bf2000c5d7068f2b8c8e9a29be62acd583fe9e6e90489a8c82",
+    "0x22ea1c497a558fc2d78587a2c212ee17f13d28509924cd34835777a746d0a8a3"
+  ],
+  "values": [
+    {
+      "value": [
+        "0x0000000000000000000000000000000000001337",
+        "0"
+      ],
+      "treeIndex": 8
+    },
+    {
+      "value": [
+        "0x0000000000000000000000000000000000001338",
+        "1"
+      ],
+      "treeIndex": 7
+    },
+    {
+      "value": [
+        "0x0000000000000000000000000000000000000003",
+        "2"
+      ],
+      "treeIndex": 13
+    },
+    {
+      "value": [
+        "0x0000000000000000000000000000000000000004",
+        "3"
+      ],
+      "treeIndex": 11
+    },
+    {
+      "value": [
+        "0x0000000000000000000000000000000000000005",
+        "4"
+      ],
+      "treeIndex": 12
+    },
+    {
+      "value": [
+        "0x0000000000000000000000000000000000000006",
+        "5"
+      ],
+      "treeIndex": 14
+    },
+    {
+      "value": [
+        "0x0000000000000000000000000000000000000007",
+        "6"
+      ],
+      "treeIndex": 9
+    },
+    {
+      "value": [
+        "0x0000000000000000000000000000000000000008",
+        "7"
+      ],
+      "treeIndex": 10
+    }
+  ],
+  "leafEncoding": [
+    "address",
+    "uint256"
+  ]
+}

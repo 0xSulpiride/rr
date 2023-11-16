@@ -1,0 +1,12 @@
+{
+  "name": "week-2",
+  "version": "1.0.0",
+  "scripts": {
+    "tree": "node ./merkle-tree/tree.js",
+    "proof": "node ./merkle-tree/proof.js"
+  },
+  "author": "Sulpiride",
+  "dependencies": {
+    "@openzeppelin/merkle-tree": "^1.0.5"
+  }
+}
