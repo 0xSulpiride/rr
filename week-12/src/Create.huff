@@ -1,0 +1,31 @@
+ 
+/** 
+ *  CREATE HUFF EXERCISE
+ *  
+ *  The task is to deploy this contract with a function `makeContract()` which when called creates a contract
+ *  that when called with any data returns `0xcaffe`.
+ *  The call to `makeContract` should return the address of the newly created contract.
+ *
+ *  NOTICE: The contract should revert when an unrecognized function is called
+ */
+
+#define function makeContract() payable returns(address)
+
+#define macro MAKE_CONTRACT() = takes(0) returns(0) {
+    __RIGHTPAD(0x600a8060093d393df3620caffe5f5260205ff3)
+    0x00 mstore
+    0x13 0x00 0x00 create
+    0x00 mstore
+    0x20 0x00 return
+}
+
+#define macro MAIN() = takes(0) returns(0) {
+    0x00 calldataload 0xE0 shr
+
+    __FUNC_SIG(makeContract) eq _makeContract jumpi
+
+    0x00 0x00 revert
+
+    _makeContract:
+        MAKE_CONTRACT()
+}

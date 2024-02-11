@@ -1,0 +1,29 @@
+
+/** 
+ *  ADD HUFF EXERCISE
+ *
+ *  When writing solidity, we most times have to perform some mathematical operations like addition etc
+ *  
+ *  The task is to write within the `MAIN` macro below, a function that takes in a uint256, adds 1 to it and returns the new value
+ *
+ *  NOTICE: The contract should revert when an unrecognized function is called
+ */
+#define function add1(uint256) payable returns(uint256)
+
+#define fn ADD_1() = takes(0) returns(0) {
+    0x04 calldataload
+    0x01 add
+    0x40 mstore
+    0x20 0x40 return
+}
+
+#define macro MAIN() = takes(0) returns(0) {
+    0x00 calldataload 0xE0 shr
+
+    dup1 __FUNC_SIG(add1)       eq add1Jump jumpi
+
+    0x00 dup1 revert
+
+    add1Jump:
+        ADD_1()
+}

@@ -1,0 +1,61 @@
+/** 
+ *  BASIC_BANK HUFF EXERCISE
+ *  
+ *  The task is to create a basic bank with huff
+ * functionalities include
+ *      - depositing tokens via similar to how solidity's `receive` function works
+ *      - withdrawing tokens
+ *      - keeping track of and viewing balance
+ */
+
+#define function balanceOf(address) payable returns(uint256)
+#define function withdraw(uint256) payable returns()
+
+#define fn BALANCE_OF() = takes(0) returns(0) {
+    0x04 calldataload   // [address]
+    sload               // [balance]
+    0x00 mstore         // []
+    0x20 0x00 return
+}
+
+#define fn WITHDRAW() = takes(0) returns(0) {
+    0x04 calldataload // [tokens to withdraw]
+    caller sload      // [balance, to withdraw]
+    dup1              // [balance, balance, to withdraw]
+    swap2             // [to withdraw, balance, balance]
+    gt overflowJump jumpi // [balance]
+    0x04 calldataload // [to withdraw, balance]
+    dup1              // [to withdraw, to withdraw, balance]
+    swap2
+    sub               // [balance after, to withdraw]
+
+    caller            // [msg.sender, balance after, to withdraw]
+    sstore            // [balance after]
+
+    0x00 0x00 0x00 0x00              // [argsOffset, argsSize, retOffset, retSize, to withdraw]
+    swap4
+    caller
+    gas
+    call
+    0x00 0x00 return
+
+    overflowJump:
+        0x00 0x00 revert
+}
+
+#define macro MAIN() = takes(0) returns(0) {
+    0x00 calldataload 0xE0 shr
+
+    dup1 __FUNC_SIG(balanceOf)       eq balanceOfJump jumpi
+    dup1 __FUNC_SIG(withdraw)       eq withdrawJump jumpi
+
+    callvalue       // [callvalue]
+    caller         // [address, callvalue]
+    sstore          // 
+    0x00 0x00 return
+
+    balanceOfJump:
+        BALANCE_OF()
+    withdrawJump:
+        WITHDRAW()
+}

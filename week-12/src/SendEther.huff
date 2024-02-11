@@ -1,0 +1,34 @@
+ 
+/** 
+ *  SEND_ETHER HUFF EXERCISE
+ *  
+ *  The task is to enable this contract, when called with function `sendEther(address)` to
+ *  transfer the value sent with the call to the address in the argument.
+ *
+ *  NOTICE: The contract should revert when an unrecognized function is called
+ */
+
+#define function sendEther(address) payable returns()
+
+#define macro SEND_ETHER() = takes(0) returns(0) {
+    0x00 // [retSize]
+    0x00 // [retOffset, retSize]
+    0x00 // [argsSize, retOffset, retSize]
+    0x00 // [argsOffset, argsSize, retOffset, retSize]
+    callvalue // [value, argsOffset, argsSize, retOffset, retSize]
+    0x04 calldataload // [address, value, argsOffset, argsSize, retOffset, retSize]
+    gas // [gas, address, value, argsOffset, argsSize, retOffset, retSize]
+    call
+    0x00 0x00 return
+}
+
+#define macro MAIN() = takes(0) returns(0) {
+    0x00 calldataload 0xE0 shr
+
+    __FUNC_SIG(sendEther)       eq sendEtherJump jumpi
+
+    0x00 0x00 revert
+
+    sendEtherJump:
+        SEND_ETHER()
+}

@@ -1,0 +1,47 @@
+
+/** 
+ *  SIMPLE_STORE HUFF EXERCISE
+ *
+ *  One of the storage locations available to devs when writing smart contracts is Storage. Its persistent and expensive
+ *  
+ *  The task is to write within the `MAIN` macro below, 2 functions...
+ *      - One named `store()` that takes one function argument and stores it in storage slot 0,
+ *      - the second named `read()` that simply returns what is stored at storage slot 0.
+ *
+ *  NOTICE: The contract should revert when an unrecognized function is called
+ */
+
+#define function store(uint256) payable returns()
+#define function read() payable returns(uint256)
+
+#define constant STORAGE_SLOT0 = FREE_STORAGE_POINTER()
+
+#define macro STORE() = takes(0) returns(0) {
+    0x04
+    calldataload // [x]
+    [STORAGE_SLOT0] // [0, x]
+    sstore
+    0x00 0x00 return
+}
+
+#define macro READ() = takes(0) returns(0) {
+    [STORAGE_SLOT0]
+    sload
+    0x00
+    mstore
+    0x20 0x00 return
+}
+
+#define macro MAIN() = takes(0) returns(0) {
+    0x00 calldataload 0xE0 shr
+
+    dup1 __FUNC_SIG(store) eq store jumpi
+    dup1 __FUNC_SIG(read) eq read jumpi
+
+    0x00 0x00 revert
+
+    store:
+        STORE()
+    read:
+        READ()
+}

@@ -1,0 +1,61 @@
+
+/** 
+ *  MAX_OF_ARRAY HUFF EXERCISE
+ *  
+ *  In this task, Given an abi encoded array of uint256, return its maximum value. Revert if the array is empty.
+ *
+ *  NOTICE: The contract should revert when an unrecognized function is called
+ */
+
+#define function maxOfArray(uint256[]) payable returns(uint256)
+
+#define macro MAX_OF_ARRAY() = takes(0) returns(0) {
+    0x04 calldataload // [arr offset - 4]
+    0x04 add          // [arr offset]
+    dup1
+    calldataload      // [arr length, arr offset]
+
+    dup1 iszero revert_on_empty jumpi
+
+    0x00 0x00 mstore       // (idx of arr in 0x00)
+    0x00 0x20 mstore       // (max of arr in 0x20)
+
+    for:
+        dup1          // [arr length, arr length, arr offset]
+        0x00 mload    // [idx of arr, arr length, arr length, arr offset]
+        eq return_max jumpi
+
+        0x00 mload    // [idx, length, offset]
+        0x01 add      // [idx + 1, length, offset]
+        dup1
+        0x00 mstore   // [idx + 1, length, offset]
+        0x20 mul      // [offset_incr, length, offset]
+        dup3 add      // [curr_offset, length, offset]
+        calldataload  // [curr_element, length, offset]
+        dup1          // [curr_element, length, offset]
+        0x20 mload    // [curr_max, curr_element, curr_element, length, offset]
+        lt save_new_max jumpi  // [curr_element, length, offset]
+        pop           // [length, offset]
+        for jump      // [length, offset]
+
+    return_max:
+        0x20 0x20 return
+
+    save_new_max:
+        0x20 mstore  // [length, offset]
+        for jump
+
+    revert_on_empty:
+        0x00 0x00 revert
+}
+
+#define macro MAIN() = takes(0) returns(0) {
+    0x00 calldataload 0xE0 shr
+
+    __FUNC_SIG(maxOfArray)       eq _maxOfArray jumpi
+
+    0x00 0x00 revert
+
+    _maxOfArray:
+        MAX_OF_ARRAY()
+}
