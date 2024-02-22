@@ -12,6 +12,50 @@
 
 #define function distribute(address[]) payable returns()
 
-#define macro MAIN() = takes(0) returns(0) {
+#define macro DISTRIBUTE() = takes(0) returns(0) {
+    0x24 calldataload       // [arr length]
+    dup1                    // [arr length, arr length]
+    0x00 eq _revert jumpi   // [arr length]
+    callvalue               // [msg.value, arr.length]
+    div                     // [value per sender]
+    0x00 mstore
 
+    _for:
+        0x20 mload          // [i]
+        dup1                // [i, i]
+        0x24 calldataload   // [arr.length, i, i]
+        eq _exit jumpi      // [i]
+        0x01 add            // [i + 1]
+        dup1
+        0x20 mstore         // [i + 1]
+        0x20 mul            // [(i + 1) * 20]
+        0x24 add calldataload // [address]
+        0x00                // [retSize, address]
+        0x00                // [retOffset, retSize, address]
+        0x00                // [argsSize, retOffset, retSize, address]
+        0x00                // [argsOffset, argsSize, retOffset, retSize, address]
+        swap4               // [address, argsOffset, argsSize, retOffset, retSize]
+        0x00 mload          // [value, address, argsOffset, argsSize, retOffset, retSize]
+        swap1               // [address, value, argsOffset, argsSize, retOffset, retSize]
+        gas                 // [gasleft, address, value, argsOffset, argsSize, retOffset, retSize]
+        call
+        pop
+        _for jump
+
+    _revert:
+        0x00 0x00 revert
+
+    _exit:
+        0x00 0x00 return
+}
+
+#define macro MAIN() = takes(0) returns(0) {
+    0x00 calldataload 0xE0 shr
+
+    __FUNC_SIG(distribute)       eq _distribute jumpi
+
+    0x00 0x00 revert
+
+    _distribute:
+        DISTRIBUTE()
 }

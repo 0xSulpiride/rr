@@ -71,7 +71,7 @@ You should see something like this
 - [x][Donations](https://github.com/rareskills/huff-puzzles/blob/main/src/Donations.huff)
 - [x][SendEther](https://github.com/rareskills/huff-puzzles/blob/main/src/SendEther.huff)
 - [x][BasicBank](https://github.com/rareskills/huff-puzzles/blob/main/src/BasicBank.huff)
-- [ ][Distribute](https://github.com/rareskills/huff-puzzles/blob/main/src/Distributor.huff)
+- [x][Distribute](https://github.com/rareskills/huff-puzzles/blob/main/src/Distributor.huff)
 - [ ][SimulateArray](https://github.com/rareskills/huff-puzzles/blob/main/src/SimulateArray.huff)
 
 ## More resources
