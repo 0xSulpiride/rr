@@ -1,0 +1,15 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+build_info = true
+extra_output = ["storageLayout"]
+ffi = true
+ast = true
+
+[rpc_endpoints]
+anvil = "${ANVIL_RPC}"
+sepolia = "${SEPOLIA_RPC}"
+
+[etherscan]
+sepolia = { key = "${ETHERSCAN_API_KEY}", chain = "sepolia" }

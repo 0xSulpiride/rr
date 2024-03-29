@@ -4,3 +4,9 @@
 [submodule "week-3-5/lib/openzeppelin-contracts"]
 	path = week-3-5/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "week-17/proxy-playground/lib/openzeppelin-foundry-upgrades"]
+	path = week-17/proxy-playground/lib/openzeppelin-foundry-upgrades
+	url = https://github.com/OpenZeppelin/openzeppelin-foundry-upgrades
+[submodule "week-17/proxy-playground/lib/openzeppelin-contracts-upgradeable"]
+	path = week-17/proxy-playground/lib/openzeppelin-contracts-upgradeable
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable

@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "deploy:anvil": "bash -c \"source .env && forge script DeployTokenWithGodMode.sol:DeployTokenWithGodMode --broadcast --chain anvil\"",
+        "deploy:sepolia": "bash -c 'source .env && forge script DeployTokenWithGodMode.sol:DeployTokenWithGodMode --broadcast --rpc-url $SEPOLIA_RPC'"
+    }
+}
