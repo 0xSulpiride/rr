@@ -1,3 +1,7 @@
+### Ethernaut 16
+
+The bug is in the storage slot collision. LibraryContract.delegatecall writes to the same slot where `address public timeZone1Library` resides. We can use leverage that to rewrite the library's address to arbitrary contract
+
 ### Ethernaut 24
 
 Although the `multicall` function restricts calling `deposit` more than 1 time in one call, we can batch `multicall` itself in a multicall and deposit multiple times that way
@@ -27,4 +31,8 @@ assert(level.admin() == player);
 ```
 
 ### Ethernaut 25
+
+The implementation contract was not initialized, so we can do it ourselves and become the upgrader of the contract
+
+After that we can `upgradeToAndCall` with the address of a contract that will `selfdestruct` in the context of the implementation contract resulting it's deletion
 
